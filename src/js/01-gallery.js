@@ -5,12 +5,12 @@ const refs = {
   galleryEl: document.querySelector(".gallery"),
   linkEl: document.querySelectorAll(".gallery__link"),
   imgEl: document.querySelectorAll(".gallery__image"),
+  modalEl: document.querySelector(".basicLightbox__placeholder"),
 };
 
 const galleryMarkup = makeGalleryMarkup(galleryItems);
 
 refs.galleryEl.insertAdjacentHTML("beforeend", galleryMarkup);
-
 refs.galleryEl.addEventListener("click", onGalleryContainerClick);
 
 function makeGalleryMarkup(gallery) {
@@ -34,6 +34,7 @@ function onGalleryContainerClick(evt) {
     return;
   } else {
     onImageClick(evt.target);
+    window.addEventListener("keydown", onEscClick);
   }
 }
 
@@ -47,6 +48,18 @@ function onImageClick(image) {
   	`
     )
     .show();
+}
+
+function onEscClick(evt) {
+  console.log("click-click");
+
+  const ESC = "Escape";
+  const isEsc = evt.code === ESC;
+
+  if (isEsc) {
+    console.log("esc click");
+    basicLightbox.create(``).show();
+  }
 }
 
 console.log(galleryItems);
