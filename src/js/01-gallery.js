@@ -34,31 +34,27 @@ function onGalleryContainerClick(evt) {
     return;
   } else {
     onImageClick(evt.target);
-    window.addEventListener("keydown", onEscClick);
   }
 }
 
 function onImageClick(image) {
   const originalImg = image.dataset.source;
 
-  basicLightbox
-    .create(
-      `
-  	<img width="1400" height="900" src="${originalImg}">
-  	`
-    )
-    .show();
-}
+  const instance = basicLightbox.create(
+    `<img width="1400" height="900" src="${originalImg}">`
+  );
 
-function onEscClick(evt) {
-  console.log("click-click");
+  instance.show();
 
-  const ESC = "Escape";
-  const isEsc = evt.code === ESC;
+  window.addEventListener("keydown", onEscClick);
 
-  if (isEsc) {
-    console.log("esc click");
-    basicLightbox.create(``).show();
+  function onEscClick(evt) {
+    const ESC = "Escape";
+    const isEsc = evt.code === ESC;
+
+    if (isEsc) {
+      instance.close();
+    }
   }
 }
 
