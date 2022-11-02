@@ -49,11 +49,14 @@ function onImageClick(image) {
   window.addEventListener("keydown", onEscClick);
 
   function onEscClick(evt) {
+    console.log("click");
     const ESC = "Escape";
     const isEsc = evt.code === ESC;
 
     if (isEsc) {
+      console.log("esc");
       instance.close();
+      window.removeEventListener("keydown", onEscClick);
     }
   }
 }
