@@ -29,8 +29,8 @@ function makeGalleryMarkup(gallery) {
 function onGalleryContainerClick(evt) {
   console.log(evt.target);
   evt.preventDefault();
-  const isClickgContainsImg = evt.target.classList.contains("gallery__image");
-  if (!isClickgContainsImg) {
+  const isClickContainsImg = evt.target.classList.contains("gallery__image");
+  if (!isClickContainsImg) {
     return;
   } else {
     onImageClick(evt.target);
