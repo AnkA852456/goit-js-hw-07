@@ -12,12 +12,13 @@ refs.galleryEl.insertAdjacentHTML("beforeend", galleryMarkup);
 refs.galleryEl.addEventListener("click", onGalleryClick);
 
 function makeGalleryMarkup(gallery) {
-  return gallery.map(({ original, preview, description }) => {
-    return `
+  return gallery
+    .map(({ original, preview, description }) => {
+      return `
         <a class="gallery__item" href="${original}">
-  <img class="gallery__image" src="${preview}" alt="" title= "${description}" />
-</a>`;
-  });
+  <img class="gallery__image" src="${preview}" alt="" title= "${description}"/></a>`;
+    })
+    .join("");
 }
 
 function onGalleryClick(evt) {
@@ -31,16 +32,9 @@ function onGalleryClick(evt) {
 }
 
 function makeSlider() {
-  let gallery = new SimpleLightbox(".gallery a");
-  gallery.on("show.simplelightbox", function () {});
-
-  gallery.on("error.simplelightbox", function (e) {
-    console.log(e);
+  new SimpleLightbox(".gallery a", {
+    captionDelay: 250,
   });
 }
-
-new SimpleLightbox(".gallery a", {
-  captionDelay: 250,
-});
 
 console.log(galleryItems);
