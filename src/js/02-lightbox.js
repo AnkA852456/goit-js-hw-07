@@ -8,7 +8,9 @@ const refs = {
 };
 
 refs.galleryEl.insertAdjacentHTML("beforeend", galleryMarkup);
-
+new SimpleLightbox(".gallery a", {
+  captionDelay: 250,
+});
 refs.galleryEl.addEventListener("click", onGalleryClick);
 
 function makeGalleryMarkup(gallery) {
@@ -26,15 +28,7 @@ function onGalleryClick(evt) {
   const isOnImage = evt.target.classList.contains("gallery__image");
   if (!isOnImage) {
     return;
-  } else {
-    makeSlider();
   }
-}
-
-function makeSlider() {
-  new SimpleLightbox(".gallery a", {
-    captionDelay: 250,
-  });
 }
 
 console.log(galleryItems);
